@@ -6,12 +6,14 @@ import { BsCircleFill, BsFillCheckCircleFill, BsFillTrashFill } from 'react-icon
 function Home() {
   const [todos, setTodos] = useState([]);
   
+  //get task
   useEffect(() => {
     axios.get('http://localhost:5001/get')
       .then(result => setTodos(result.data))
       .catch(err => console.log(err));
   }, []);
 
+  //edit task
   const handleEdit = (id) => {
     axios.put(`http://localhost:5001/update/${id}`) // Corrected the URL
       .then(result => {
@@ -20,6 +22,7 @@ function Home() {
       .catch(err => console.log(err))
   }
 
+  // delete task
   const handleDelete = (id) => {
     axios.delete(`http://localhost:5001/delete/${id}`) // Corrected the URL
       .then(result => {
